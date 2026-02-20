@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Analytics events - allow write for all users, read only for authenticated admin
+    match /analytics_events/{eventId} {
+      allow read: if request.auth != null;
+      allow create: if true; // Allow anyone to create analytics events
+      allow update, delete: if false; // Prevent modification
+    }
+    
+    // Posts - public read, admin write
+    match /posts/{postId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Users - only authenticated users can read/write their own data
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Pages - public read, admin write
+    match /pages/{pageId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Settings - public read, admin write
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}

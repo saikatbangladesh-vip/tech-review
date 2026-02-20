@@ -1,0 +1,268 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 221 83% 53%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 221 83% 53%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 221 83% 53%;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 220 13% 9%;
+  --foreground: 213 31% 91%;
+  --card: 222 13% 11%;
+  --card-foreground: 213 31% 91%;
+  --popover: 222 13% 13%;
+  --popover-foreground: 213 31% 91%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 222 13% 11%;
+  --secondary: 217 13% 18%;
+  --secondary-foreground: 213 31% 91%;
+  --muted: 215 13% 16%;
+  --muted-foreground: 217.9 10.6% 64.9%;
+  --accent: 217 13% 18%;
+  --accent-foreground: 213 31% 91%;
+  --destructive: 0 62.8% 50.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217 13% 18%;
+  --input: 217 13% 18%;
+  --ring: 217 91% 60%;
+}
+
+* {
+  /* Smooth transitions for all elements */
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+html {
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
+  /* Better text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-feature-settings: 'rlig' 1, 'calt' 1;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+  /* Prevent white flash on page transitions */
+  background-color: #ffffff;
+  color: #374151;
+  /* Smooth page transitions */
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+body.dark {
+  background-color: #0d1117;
+  color: #d1d5db;
+}
+
+/* Smooth page view transitions */
+#root {
+  min-height: 100vh;
+  background-color: inherit;
+  transition: opacity 200ms ease;
+}
+
+/* GitHub-style scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-[#484f58] rounded-md;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-[#6e7681];
+}
+
+::-webkit-scrollbar-corner {
+  @apply bg-transparent;
+}
+
+/* Prose styles for MDX content */
+.prose {
+  max-width: none;
+  color: rgb(55 65 81);
+}
+
+.dark .prose {
+  color: rgb(209 213 219);
+}
+
+.prose h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose p {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.prose a {
+  color: rgb(6 182 212);
+  text-decoration: underline;
+}
+
+.prose ul, .prose ol {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  font-size: 1.125rem;
+  margin: 0.5rem 0;
+}
+
+.prose img {
+  border-radius: 1rem;
+  margin: 2rem 0;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+.prose code {
+  background-color: rgb(243 244 246);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.dark .prose code {
+  background-color: rgb(31 41 55);
+}
+
+.prose pre {
+  background-color: rgb(17 24 39);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+}
+
+.prose blockquote {
+  border-left: 4px solid rgb(6 182 212);
+  padding-left: 1.5rem;
+  font-style: italic;
+  margin: 2rem 0;
+}
+
+/* Smooth button interactions */
+button, a {
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:active, a:active {
+  transform: scale(0.98);
+}
+
+/* Smooth hover effects */
+button:hover, a:hover {
+  transform: translateY(-1px);
+}
+
+/* Smooth focus states */
+*:focus-visible {
+  outline: 2px solid rgb(99 102 241);
+  outline-offset: 2px;
+  transition: outline-offset 150ms ease;
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 400ms ease, transform 400ms ease;
+}
+
+img:hover {
+  transform: scale(1.02);
+}
+
+/* Smooth card hover effects */
+.card-hover {
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Smooth page enter animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply subtle fade in animation to main content */
+main > * {
+  animation: fadeInUp 300ms ease-out;
+}
+
+/* Smooth modal/dialog animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
